@@ -41,6 +41,6 @@ public class ImagePostController {
 
   @PostMapping({"", "/"})
   public ResponseEntity createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO){
-    return  ResponseEntity.ok().body(ima)
+    return  ResponseEntity.ok().body();
   }
 }
