@@ -41,7 +41,12 @@ public class ImagePostController {
   }
   @PreAuthorize("hasAuthority('Post_Create')")
   @PostMapping({"", "/"})
+<<<<<<< HEAD
   public ResponseEntity createImagePost(@Valid @RequestBody ImagePost imagePost){
     return ResponseEntity.ok().body(imagePostMapper.toDTO(imagePostService.save(imagePost)));
+=======
+  public ResponseEntity createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO){
+    return  ResponseEntity.ok().body();
+>>>>>>> 9563eee3598c82260a005ff429a01bb84eadc2b7
   }
 }
