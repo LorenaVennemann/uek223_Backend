@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,11 +21,11 @@ public class ImagePostController {
 
   private ImagePostServiceImpl imagePostService;
 
-  private ImagePostRepository imagePostRepository;
+  private ImagePostMapper imagePostMapper;
 
   @Autowired
-  public ImagePostController(ImagePostServiceImpl imagePostService, ImagePostRepository imagePostRepository){
-    this.imagePostRepository = imagePostRepository;
+  public ImagePostController(ImagePostServiceImpl imagePostService, ImagePostMapper imagePostMapper){
+    this.imagePostMapper = imagePostMapper;
     this.imagePostService = imagePostService;
   }
 
@@ -39,14 +40,9 @@ public class ImagePostController {
     List<ImagePost> imagePost = imagePostService.findAll();
     return new ResponseEntity<>(ImagePostMapper.toDTOs(imagePost), HttpStatus.OK);
   }
-  @PreAuthorize("hasAuthority('Post_Create')")
+  @PreAuthorize("hasAuthority('POST_CREATE')")
   @PostMapping({"", "/"})
-<<<<<<< HEAD
   public ResponseEntity createImagePost(@Valid @RequestBody ImagePost imagePost){
     return ResponseEntity.ok().body(imagePostMapper.toDTO(imagePostService.save(imagePost)));
-=======
-  public ResponseEntity createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO){
-    return  ResponseEntity.ok().body();
->>>>>>> 9563eee3598c82260a005ff429a01bb84eadc2b7
   }
 }
