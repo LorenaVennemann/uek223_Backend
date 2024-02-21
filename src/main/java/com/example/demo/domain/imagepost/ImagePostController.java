@@ -2,6 +2,7 @@ package com.example.demo.domain.imagepost;
 
 import com.example.demo.domain.imagepost.dto.ImagePostDTO;
 import com.example.demo.domain.imagepost.dto.ImagePostMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,8 @@ public class ImagePostController {
     return new ResponseEntity<>(ImagePostMapper.toDTOs(imagePost), HttpStatus.OK);
   }
 
-  @PostMapping({})
+  @PostMapping({"", "/"})
+  public ResponseEntity createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO){
+    return  ResponseEntity.ok().body(ima)
+  }
 }

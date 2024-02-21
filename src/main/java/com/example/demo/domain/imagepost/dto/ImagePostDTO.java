@@ -1,4 +1,6 @@
 package com.example.demo.domain.imagepost.dto;
 
-public class ImagePostDTO {
+import com.example.demo.core.generic.AbstractDTO;
+
+public class ImagePostDTO extends AbstractDTO {
 }
