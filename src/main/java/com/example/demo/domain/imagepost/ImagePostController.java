@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,9 +39,9 @@ public class ImagePostController {
     List<ImagePost> imagePost = imagePostService.findAll();
     return new ResponseEntity<>(ImagePostMapper.toDTOs(imagePost), HttpStatus.OK);
   }
-
+  @PreAuthorize("hasAuthority('Post_Create')")
   @PostMapping({"", "/"})
-  public ResponseEntity createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO){
-    return  ResponseEntity.ok().body(ima)
+  public ResponseEntity createImagePost(@Valid @RequestBody ImagePost imagePost){
+    return ResponseEntity.ok().body(imagePostMapper.toDTO(imagePostService.save(imagePost)));
   }
 }
