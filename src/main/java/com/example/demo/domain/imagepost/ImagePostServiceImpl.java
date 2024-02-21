@@ -1,16 +1,18 @@
+
 package com.example.demo.domain.imagepost;
 
-import com.example.demo.core.generic.AbstractRepository;
+
 import com.example.demo.core.generic.AbstractServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
+@Transactional
 public class ImagePostServiceImpl extends AbstractServiceImpl<ImagePost> {
 
-  @Autowired
-  public ImagePostServiceImpl(AbstractRepository<ImagePost> repository) {
+
+  public ImagePostServiceImpl(ImagePostRepository repository) {
     super(repository);
   }
 }
-

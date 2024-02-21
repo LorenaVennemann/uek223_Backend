@@ -8,6 +8,8 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.User;
 
+import java.util.UUID;
+
 @Log4j2
 @NoArgsConstructor
 @Getter
@@ -23,7 +25,7 @@ public class ImagePost extends AbstractEntity {
   private String description;
 
   @Column
-  private Integer likes;
+  private Integer likes_count;
 
   @ManyToOne
   @JoinColumn(name = "author_id")
@@ -42,11 +44,11 @@ public class ImagePost extends AbstractEntity {
     log.info("Update Post. ");
   }
 
-  public ImagePost(Long id, String description, Integer likes, User author, String image){
+  public ImagePost(UUID id, String description, Integer likes_count, User author, String image){
     super(id);
     this.description = description;
     this.image = image;
-    this.likes = likes;
+    this.likes_count = likes_count;
     this.author = author;
 
   }
