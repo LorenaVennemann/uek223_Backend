@@ -1,12 +1,12 @@
 package com.example.demo.domain.imagepost;
 
 import com.example.demo.core.generic.AbstractEntity;
+import com.example.demo.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j2;
-import org.apache.catalina.User;
 
 import java.util.UUID;
 
@@ -21,11 +21,11 @@ public class ImagePost extends AbstractEntity {
   @Column
   private String image;
 
-  @Column(length = 50)
+  @Column(length = 500)
   private String description;
 
   @Column
-  private Integer likesCount;
+  private Integer likes;
 
   @ManyToOne
   @JoinColumn(name = "author_id")
@@ -33,20 +33,20 @@ public class ImagePost extends AbstractEntity {
 
   @PostPersist
   public void newImagePostAdded(){
-    log.info("create a new Post. ");
+    log.info("Created a new post.");
   }
 
   @PostUpdate
-  public void imagePostUpdate(){
-    log.info("Update Post. ");
+  public void imagePostUpdated(){
+    log.info("Updated post.");
   }
 
-  public ImagePost(UUID id, String description, Integer likesCount, User author, String image){
-    super(id);
-    this.description = description;
-    this.image = image;
-    this.likesCount = likesCount;
-    this.author = author;
 
+  public ImagePost(UUID id, String image, String description, Integer likes, User author){
+    super(id);
+    this.image = image;
+    this.description = description;
+    this.likes = likes;
+    this.author = author;
   }
 }

@@ -16,14 +16,12 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/imagepost")
 public class ImagePostController {
-
-  private final ImagePostServiceImpl imagePostService;
-  private final ImagePostMapper imagePostMapper;
   @Autowired
-  private ImagePostController(ImagePostServiceImpl imagePostService, ImagePostMapper imagePostMapper){
-    this.imagePostService = imagePostService;
-    this.imagePostMapper = imagePostMapper;
-  }
+  private ImagePostServiceImpl imagePostService;
+  @Autowired
+  private ImagePostMapper imagePostMapper;
+
+
   @GetMapping("/{id}")
   public ResponseEntity<ImagePostDTO> retrieveById(@PathVariable UUID id) {
     ImagePost imagePost = imagePostService.findById(id);
