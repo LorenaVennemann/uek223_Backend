@@ -9,45 +9,50 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.UUID;
 
 @Validated
 @RestController
-@RequestMapping("/imagepost")
+@RequestMapping("/post")
 public class ImagePostController {
+
   @Autowired
   private ImagePostServiceImpl imagePostService;
   @Autowired
   private ImagePostMapper imagePostMapper;
 
-
   @GetMapping("/{id}")
   public ResponseEntity<ImagePostDTO> retrieveById(@PathVariable UUID id) {
     ImagePost imagePost = imagePostService.findById(id);
-    return new ResponseEntity<>(imagePostMapper.toDTO(imagePost), HttpStatus.OK);
+    return ResponseEntity.ok(imagePostMapper.toDTO(imagePost));
   }
 
-  @GetMapping({"", "/"})
-  public ResponseEntity<List<ImagePostDTO>> retrieveAll(){
-    List<ImagePost> imagePost = imagePostService.findAll();
-    return new ResponseEntity<>(imagePostMapper.toDTOs(imagePost), HttpStatus.OK);
+  @GetMapping
+  public ResponseEntity<List<ImagePostDTO>> retrieveAll() {
+    List<ImagePost> imagePosts = imagePostService.findAll();
+    return ResponseEntity.ok(imagePostMapper.toDTOs(imagePosts));
   }
+
   @PreAuthorize("hasAuthority('POST_CREATE')")
-  @PostMapping({"", "/"})
-  public ResponseEntity createImagePost(@Valid @RequestBody ImagePost imagePost){
-    return ResponseEntity.ok().body(imagePostMapper.toDTO(imagePostService.save(imagePost)));
+  @PostMapping
+  public ResponseEntity<ImagePostDTO> createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO) {
+    ImagePost savedImagePost = imagePostService.save(imagePostMapper.fromDTO(imagePostDTO));
+    return new ResponseEntity<>(imagePostMapper.toDTO(savedImagePost), HttpStatus.CREATED);
   }
 
   @PreAuthorize("hasAuthority('POST_DELETE')")
   @DeleteMapping("/{id}")
-  public ResponseEntity deleteImagePost(@PathVariable ("id") UUID id){
+  public ResponseEntity<Void> deleteImagePost(@PathVariable UUID id) {
     imagePostService.deleteById(id);
-    return ResponseEntity.ok().body("Deleted publisher");
+    return ResponseEntity.noContent().build();
   }
+
   @PreAuthorize("hasAuthority('POST_UPDATE')")
   @PutMapping("/{id}")
-  public ResponseEntity updateImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO, @PathVariable ("id") UUID id){
-    return ResponseEntity.ok().body(imagePostMapper.toDTO(imagePostService.updateById(id, imagePostMapper.fromDTO(imagePostDTO))));
+  public ResponseEntity<ImagePostDTO> updateImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO, @PathVariable UUID id) {
+    ImagePost updatedImagePost = imagePostService.updateById(id, imagePostMapper.fromDTO(imagePostDTO));
+    return ResponseEntity.ok(imagePostMapper.toDTO(updatedImagePost));
   }
 }
