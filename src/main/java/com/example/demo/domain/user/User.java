@@ -3,17 +3,11 @@ package com.example.demo.domain.user;
 import com.example.demo.core.generic.AbstractEntity;
 import com.example.demo.domain.imagepost.ImagePost;
 import com.example.demo.domain.role.Role;
-<<<<<<< HEAD
-
-import java.util.*;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-=======
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
->>>>>>> c2523f8840b58a7c95bfa0ad7cdac5b92bc5daa5
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +23,8 @@ import lombok.experimental.Accessors;
 public class User extends AbstractEntity {
 
   @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+
+  @JsonBackReference
   private Set<ImagePost> imagePosts = new HashSet<>();
 
   @Column(name = "first_name")
