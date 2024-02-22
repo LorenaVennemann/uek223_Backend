@@ -1,17 +1,13 @@
 package com.example.demo.domain.user;
 
 import com.example.demo.core.generic.AbstractEntity;
+import com.example.demo.domain.imagepost.ImagePost;
 import com.example.demo.domain.role.Role;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +20,9 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public class User extends AbstractEntity {
+
+  @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  private Set<ImagePost> imagePosts = new HashSet<>();
 
   @Column(name = "first_name")
   private String firstName;
