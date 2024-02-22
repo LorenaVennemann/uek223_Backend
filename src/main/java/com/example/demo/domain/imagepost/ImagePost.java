@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "image-post")
+@Table(name = "image_post")
 public class ImagePost extends AbstractEntity {
 
   @Column
@@ -25,14 +25,14 @@ public class ImagePost extends AbstractEntity {
   private String description;
 
   @Column
-  private Integer likes_count;
+  private Integer likesCount;
 
   @ManyToOne
   @JoinColumn(name = "author_id")
   private User author;
 
   @Id
-  private Long id;
+  private UUID id;
 
   @PostPersist
   public void newImagePostAdded(){
@@ -44,11 +44,11 @@ public class ImagePost extends AbstractEntity {
     log.info("Update Post. ");
   }
 
-  public ImagePost(UUID id, String description, Integer likes_count, User author, String image){
+  public ImagePost(UUID id, String description, Integer likesCount, User author, String image){
     super(id);
     this.description = description;
     this.image = image;
-    this.likes_count = likes_count;
+    this.likesCount = likesCount;
     this.author = author;
 
   }
