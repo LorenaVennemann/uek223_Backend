@@ -1,17 +1,13 @@
 package com.example.demo.domain.user;
 
 import com.example.demo.core.generic.AbstractEntity;
+import com.example.demo.domain.imagepost.ImagePost;
 import com.example.demo.domain.role.Role;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+
+import java.util.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

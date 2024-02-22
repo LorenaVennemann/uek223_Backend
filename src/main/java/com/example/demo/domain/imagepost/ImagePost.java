@@ -31,9 +31,6 @@ public class ImagePost extends AbstractEntity {
   @JoinColumn(name = "author_id")
   private User author;
 
-  @Id
-  private UUID id;
-
   @PostPersist
   public void newImagePostAdded(){
     log.info("create a new Post. ");
