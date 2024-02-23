@@ -36,7 +36,7 @@ public class ImagePostController {
   }
 
   @PreAuthorize("hasAuthority('POST_CREATE')")
-  @PostMapping
+  @PostMapping("/add")
   public ResponseEntity<ImagePostDTO> createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO) {
     ImagePost savedImagePost = imagePostService.save(imagePostMapper.fromDTO(imagePostDTO));
     return new ResponseEntity<>(imagePostMapper.toDTO(savedImagePost), HttpStatus.CREATED);
