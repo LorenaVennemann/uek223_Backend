@@ -10,7 +10,7 @@ public class ImagePostDTO extends AbstractDTO {
 
     private String image;
     private String description;
-    private Integer likesCount;
+    private Integer like_count;
     private Long authorId;
 
 }

@@ -35,6 +35,6 @@ VALUES ('d29e709c-0ff1-4f4c-a7ef-09f656c390f1', '2ebf301e-6c61-4076-98e3-2a38b31
  ON CONFLICT DO NOTHING;
 
 --POSTS
-INSERT INTO image_post (id, image, description, likes, author_id) VALUES
+INSERT INTO image_post (id, image, description, like_count, author_id) VALUES
 ('af7c1fe6-d669-414e-b066-e9733f0de7a8', 'https://www.istockphoto.com/resources/images/PhotoFTLP/1040315976.jpg', 'Post1', 0, 'ba804cb9-fa14-42a5-afaf-be488742fc54'),
 ('08c71152-c552-42e7-b094-f510ff44e9cb', 'https://www.istockphoto.com/resources/images/PhotoFTLP/998044806.jpg', 'Post2', 0, 'ba804cb9-fa14-42a5-afaf-be488742fc54');
