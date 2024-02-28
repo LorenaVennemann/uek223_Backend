@@ -18,17 +18,20 @@ VALUES
     ('76d2cbf6-5845-470e-ad5f-2edb9e09a868', 'USER_MODIFY'),
     ('21c942db-a275-43f8-bdd6-d048c21bf5ab', 'USER_DELETE'),
     ('1e29a363-d231-4a40-9ee9-b194909a3cb2', 'POST_CREATE'),
-    ('1e29a363-d231-4a40-9ee9-b194909a3cb2', 'POST_GET'),
-    ('1e29a363-d231-4a40-9ee9-b194909a3cb2', 'POST_GET_ALL'),
-    ('1e29a363-d231-4a40-9ee9-b194909a3cb2', 'POST_DELETE'),
-    ('1e29a363-d231-4a40-9ee9-b194909a3cb2', 'POST_UPDATE')
+    ('1e29a363-d777-4a40-9ee9-b194909a3cb2', 'POST_UPDATE')
     ON CONFLICT DO NOTHING;
 
 
--- Assign POST_CREATE authority to USER role
+-- Assign post authorities to USER role
 INSERT INTO role_authority(role_id, authority_id)
 VALUES ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '1e29a363-d231-4a40-9ee9-b194909a3cb2')
+ON CONFLICT DO NOTHING;
+
+-- Assign "POST_UPDATE" authority to the ADMIN role
+INSERT INTO role_authority(role_id, authority_id)
+VALUES ('ab505c92-7280-49fd-a7de-258e618df074', '1e29a363-d777-4a40-9ee9-b194909a3cb2') -- 'POST_UPDATE' authority
     ON CONFLICT DO NOTHING;
+
 
 
 --assign roles to users
@@ -37,7 +40,7 @@ values ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'd29e709c-0ff1-4f4c-a7ef-09f656c
        ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'd29e709c-0ff1-4f4c-a7ef-09f656c390f1'),
        ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'ab505c92-7280-49fd-a7de-258e618df074'),
        ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02')
- ON CONFLICT DO NOTHING;
+ON CONFLICT DO NOTHING;
 
 --assign authorities to roles
 INSERT INTO role_authority(role_id, authority_id)
