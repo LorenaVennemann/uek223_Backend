@@ -27,6 +27,7 @@ public class ImagePost extends AbstractEntity {
   @Column
   private Integer like_count;
 
+
   @ManyToOne
   @JoinColumn(name = "author_id")
   private User author;

@@ -23,6 +23,9 @@ public class ImagePostController {
   @Autowired
   private ImagePostMapper imagePostMapper;
 
+  /**
+   * fetches all image posts
+   */
   @GetMapping("/{id}")
   public ResponseEntity<ImagePostDTO> retrieveById(@PathVariable UUID id) {
     ImagePost imagePost = imagePostService.findById(id);
