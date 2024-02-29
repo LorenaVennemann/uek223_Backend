@@ -30,7 +30,7 @@ public class ImagePost extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "author_id")
-  private User author;
+  private User user;
 
   @PostPersist
   public void newImagePostAdded(){
@@ -43,11 +43,11 @@ public class ImagePost extends AbstractEntity {
   }
 
 
-  public ImagePost(UUID id, String image, String description, Integer like_count, User author){
+  public ImagePost(UUID id, String image, String description, Integer like_count, User user){
     super(id);
     this.image = image;
     this.description = description;
     this.like_count = like_count;
-    this.author = author;
+    this.user = user;
   }
 }

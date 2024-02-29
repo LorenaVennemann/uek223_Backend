@@ -38,6 +38,13 @@ public class ImagePostController {
     return ResponseEntity.ok(imagePostMapper.toDTOs(imagePosts));
   }
 
+  @PreAuthorize("hasAuthority('POST_UPDATE') or @imagePostSecurity.isOwner(authentication, #id)")
+  @PutMapping("/{id}")
+  public ResponseEntity<ImagePostDTO> updateImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO, @PathVariable UUID id) {
+    ImagePost updatedImagePost = imagePostService.updateById(id, imagePostMapper.fromDTO(imagePostDTO));
+    return ResponseEntity.ok(imagePostMapper.toDTO(updatedImagePost));
+  }
+
   @PreAuthorize("hasAuthority('POST_CREATE')")
   @PostMapping("/add")
   public ResponseEntity<ImagePostDTO> createImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO) {
@@ -45,17 +52,12 @@ public class ImagePostController {
     return new ResponseEntity<>(imagePostMapper.toDTO(savedImagePost), HttpStatus.CREATED);
   }
 
-  @PreAuthorize("hasAuthority('POST_DELETE')")
+  @PreAuthorize("hasAuthority('POST_DELETE') or @imagePostSecurity.isOwner(authentication, #id)")
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteImagePost(@PathVariable UUID id) {
     imagePostService.deleteById(id);
     return ResponseEntity.noContent().build();
   }
 
-  @PreAuthorize("hasAuthority('POST_UPDATE')")
-  @PutMapping("/{id}")
-  public ResponseEntity<ImagePostDTO> updateImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO, @PathVariable UUID id) {
-    ImagePost updatedImagePost = imagePostService.updateById(id, imagePostMapper.fromDTO(imagePostDTO));
-    return ResponseEntity.ok(imagePostMapper.toDTO(updatedImagePost));
-  }
+
 }
