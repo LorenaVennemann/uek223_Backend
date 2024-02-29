@@ -71,7 +71,6 @@ public class ImagePostController {
    * @param id UUID of the image post to delete
    * @return ResponseEntity with no content
    */
-  @PreAuthorize("hasAuthority('POST_DELETE') or @imagePostSecurity.isOwner(authentication, #id)")
   @DeleteMapping("/{id}")
   public ResponseEntity<Void> deleteImagePost(@PathVariable UUID id) {
     imagePostService.deleteById(id);
@@ -85,7 +84,6 @@ public class ImagePostController {
    * @param id UUID of the image post to update
    * @return ResponseEntity containing the updated image post DTO
    */
-  @PreAuthorize("hasAuthority('POST_UPDATE') or @imagePostSecurity.isOwner(authentication, #id)")
   @PutMapping("/{id}")
   public ResponseEntity<ImagePostDTO> updateImagePost(@Valid @RequestBody ImagePostDTO imagePostDTO, @PathVariable UUID id) {
     ImagePost updatedImagePost = imagePostService.updateById(id, imagePostMapper.fromDTO(imagePostDTO));
