@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "a60a5d6b-2a5d-42ed-9756-52f717a34f7c",
+		"name": "uek223PostManGroup5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26283410"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "GetAllUserPosts",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserPost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IlBPU1RfQ1JFQVRFIn0seyJhdXRob3JpdHkiOiJQT1NUX1VQREFURSJ9LHsiYXV0aG9yaXR5IjoiVVNFUl9NT0RJRlkifSx7ImF1dGhvcml0eSI6IlBPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJQT1NUX0NSRUFURSJ9XSwic3ViIjoiYmE4MDRjYjktZmExNC00MmE1LWFmYWYtYmU0ODg3NDJmYzU0IiwiaWF0IjoxNzA5MjE0MTA0LCJleHAiOjE3MDkzMTQxMDQsImlzcyI6InVrMjIzIn0.2lGDxVJwz4X9Fx-ML_umyrWfnFjwn8dy1SnWqdD7h2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"image\": \"https://www.istockphoto.com/resources/images/PhotoFTLP/1040315976.jpg\",\r\n        \"description\": \"Post1\",\r\n        \"like_count\": 0    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/08c71152-c552-42e7-b094-f510ff44e9cb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"08c71152-c552-42e7-b094-f510ff44e9cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Fixed the expected status code to 403\r",
+									"pm.test(\"Resource has been deleted\", function () {\r",
+									"    pm.sendRequest({\r",
+									"        url: \"http://localhost:8080/08c71152-c552-42e7-b094-f510ff44e9cb\",\r",
+									"        method: \"GET\"\r",
+									"    }, function (err, response) {\r",
+									"        pm.expect(response.code).to.equal(403); // Assuming a 403 status code when the resource is forbidden\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/08c71152-c552-42e7-b094-f510ff44e9cb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"08c71152-c552-42e7-b094-f510ff44e9cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserPostById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GetAllUserPosts",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserPost",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiVVNFUl9ERUxFVEUifSx7ImF1dGhvcml0eSI6IlBPU1RfQ1JFQVRFIn0seyJhdXRob3JpdHkiOiJQT1NUX1VQREFURSJ9LHsiYXV0aG9yaXR5IjoiVVNFUl9NT0RJRlkifSx7ImF1dGhvcml0eSI6IlBPU1RfREVMRVRFIn0seyJhdXRob3JpdHkiOiJQT1NUX0NSRUFURSJ9XSwic3ViIjoiYmE4MDRjYjktZmExNC00MmE1LWFmYWYtYmU0ODg3NDJmYzU0IiwiaWF0IjoxNzA5MjE0MTA0LCJleHAiOjE3MDkzMTQxMDQsImlzcyI6InVrMjIzIn0.2lGDxVJwz4X9Fx-ML_umyrWfnFjwn8dy1SnWqdD7h2Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"image\": \"https://www.istockphoto.com/resources/images/PhotoFTLP/1040315976.jpg\",\r\n        \"description\": \"Post1\",\r\n        \"like_count\": 0    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/08c71152-c552-42e7-b094-f510ff44e9cb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"08c71152-c552-42e7-b094-f510ff44e9cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserLogin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@example.com\",\r\n    \"password\": \"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Fixed the expected status code to 403\r",
+									"pm.test(\"Resource has been deleted\", function () {\r",
+									"    pm.sendRequest({\r",
+									"        url: \"http://localhost:8080/08c71152-c552-42e7-b094-f510ff44e9cb\",\r",
+									"        method: \"GET\"\r",
+									"    }, function (err, response) {\r",
+									"        pm.expect(response.code).to.equal(403); // Assuming a 403 status code when the resource is forbidden\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/08c71152-c552-42e7-b094-f510ff44e9cb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"08c71152-c552-42e7-b094-f510ff44e9cb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserPostById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
