@@ -37,9 +37,7 @@ VALUES ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e0
        ('ab505c92-7280-49fd-a7de-258e618df074', '2bc788a3-b9d0-4049-9321-6608d75c8a08'),
        ('ab505c92-7280-49fd-a7de-258e618df074', '5e805afa-25c3-44f4-9a54-d57605ccb533'),
        ('ab505c92-7280-49fd-a7de-258e618df074', '7df50cab-efac-4c50-8615-be7e3a469b28'),
-       ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '2bc788a3-b9d0-4049-9321-6608d75c8a08'),
-       ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '5e805afa-25c3-44f4-9a54-d57605ccb533'),
-       ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '7df50cab-efac-4c50-8615-be7e3a469b28')
+       ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '2bc788a3-b9d0-4049-9321-6608d75c8a08')
     ON CONFLICT DO NOTHING;
 
 INSERT INTO image_post (id, image, description, like_count, author_id)

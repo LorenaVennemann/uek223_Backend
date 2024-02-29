@@ -10,6 +10,12 @@ import lombok.extern.log4j.Log4j2;
 
 import java.util.UUID;
 
+/**
+ * Represents an image post entity within the application,
+ * extends {@link AbstractEntity} to inherit common entity properties.
+ * Lifecycle callback methods are used to log actions when a new image post is created, deleted or updated.
+ */
+
 @Log4j2
 @NoArgsConstructor
 @Getter
@@ -37,12 +43,26 @@ public class ImagePost extends AbstractEntity {
     log.info("Created a new post.");
   }
 
+  @PostRemove
+  public void imagePostDeleted(){
+    log.info("deleted post.");
+  }
+
   @PostUpdate
   public void imagePostUpdated(){
     log.info("Updated post.");
   }
 
 
+  /**
+   * Constructs a new ImagePost entity with specified details.
+   *
+   * @param id unique identifier of the image post
+   * @param image or reference to the image
+   * @param description description of the image post
+   * @param like_count number of likes the post has received
+   * @param author author of the post, got by a {@link User} entity
+   */
   public ImagePost(UUID id, String image, String description, Integer like_count, User author){
     super(id);
     this.image = image;

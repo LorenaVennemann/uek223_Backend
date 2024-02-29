@@ -15,24 +15,9 @@ import java.util.UUID;
 @Setter
 public class ImagePostDTO extends AbstractDTO {
 
-    /**
-     * URL in from of a string of the image.
-     */
     private String image;
-
-    /**
-     * Description for the post.
-     */
     private String description;
-
-    /**
-     * Number of likes the image has received.
-     */
     private Integer like_count;
-
-    /**
-     * Minimal user information for image post.
-     */
     private UserMinimalDTO user;
 
     /**
