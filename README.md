@@ -29,3 +29,10 @@ yarn start
 
 To see the swagger documentation you must start the project and go to the following link:
 http://localhost:8080/myapi/swagger-ui/index.html#/
+
+this is a list of our endpoints:
+- /post : creates a new post if the user is logged in
+- /gallery : displays all posts
+- /users : admin only page where admins can edit user info or add/delete users
+- /update-post/[post_id] : edits the if it's the poster or an admin
+- /delete/[post_id]: delets the post it's the poster or an admin
