@@ -42,6 +42,17 @@ VALUES ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e0
        ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '7df50cab-efac-4c50-8615-be7e3a469b28')
     ON CONFLICT DO NOTHING;
 
-INSERT INTO image_post (id, image, description, like_count, author_id) VALUES
-                                                                           ('af7c1fe6-d669-414e-b066-e9733f0de7a8', 'https://www.istockphoto.com/resources/images/PhotoFTLP/1040315976.jpg', 'Post1', 0, 'ba804cb9-fa14-42a5-afaf-be488742fc54'),
-                                                                           ('08c71152-c552-42e7-b094-f510ff44e9cb', 'https://www.istockphoto.com/resources/images/PhotoFTLP/998044806.jpg', 'Post2', 0, 'ba804cb9-fa14-42a5-afaf-be488742fc54');
+INSERT INTO image_post (id, image, description, like_count, author_id)
+VALUES ('af7c1fe6-d669-414e-b066-e9733f0de7a8', 'https://www.istockphoto.com/resources/images/PhotoFTLP/1040315976.jpg', 'Post1', 0, 'ba804cb9-fa14-42a5-afaf-be488742fc54'),
+('08c71152-c552-42e7-b094-f510ff44e9cb', 'https://www.istockphoto.com/resources/images/PhotoFTLP/998044806.jpg', 'Post2', 0, 'ba804cb9-fa14-42a5-afaf-be488742fc54');
+
+DROP TABLE IF EXISTS post_likes;
+CREATE TABLE post_likes
+(
+    id      UUID NOT NULL PRIMARY KEY,
+    user_id UUID NOT NULL,
+    post_id UUID NOT NULL,
+    CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES users(id),
+    CONSTRAINT fk_post FOREIGN KEY(post_id) REFERENCES image_post(id),
+    UNIQUE (user_id, post_id)
+);

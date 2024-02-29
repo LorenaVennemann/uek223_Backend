@@ -6,6 +6,10 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
+/**
+ * This interface is for converting ImagePost and ImagePostDTO objects.
+ * It uses MapStruct library to do the mapping.
+ */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ImagePostMapper extends AbstractMapper<ImagePost, ImagePostDTO> {
 }
